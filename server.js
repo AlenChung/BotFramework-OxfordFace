@@ -1,9 +1,9 @@
 var restify = require('restify');
 var builder = require('botbuilder');
-var restify = require('restify');
-var builder = require('botbuilder');
+ 
 var Face = require('oxford-face-api');
-//var face = new Face("");
+var face = new Face("8f7a031e5133417aa8b1f1ab525efec1");
+ 
 var request = require("superagent");
 var httprequest = require('request').defaults({ encoding: null });
 const needle = require("needle"),
@@ -19,6 +19,7 @@ var personid;
 var person_confidence=1;
 var young_person_index;
 var max_age=999;
+ 
 var man_count=0;
 var woman_count=0;
 var max_smile_value=0;
@@ -29,6 +30,7 @@ var CROP = true;
 var KC_ID="7c1e96f9-c73c-4eea-951b-61aab07c1b16";
 var JERRY_ID="16ef3542-84b4-448e-9250-9f57773f183b";
 var FinalName=""; 
+ 
 //=========================================================
 // Bot Setup
 //=========================================================
@@ -36,6 +38,7 @@ var FinalName="";
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
+ 
     console.log('%s listening to %s', server.name, server.url);
 });
 
@@ -47,10 +50,12 @@ var connector = new builder.ChatConnector({
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
+ 
 //=========================================================
 // Bots Dialogs
 //=========================================================
 
+ 
 // Create LUIS recognizer 
 var model = process.env.LUIS_MODEL_URL || "https://api.projectoxford.ai/luis/v1/application?id=ceb627e1-2d52-4626-9bbd-543a25983862&subscription-key=35820529a1be4e389462b5b4fd14ef90";
 var recognizer = new builder.LuisRecognizer(model);
@@ -338,5 +343,5 @@ function upLoadImage(att_url,session) {
     });
 }
 
-
+ 
  
